@@ -1,4 +1,4 @@
-import axios from "axios";
+import { BaseURL, apiEndPoint } from "./api.config";
 
 export class DepthManager {
   private market: string;
@@ -18,7 +18,7 @@ export class DepthManager {
   async pollMarket() {
     try {
       const response = await fetch(
-        `https://public.coindcx.com/market_data/orderbook?pair=${this.market}`
+        `${BaseURL.publicCoindcx}${apiEndPoint.orderBook}?pair=${this.market}`
       );
 
       const depth = (await response.json()) as {
